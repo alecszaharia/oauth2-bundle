@@ -39,6 +39,10 @@ use Trikoder\Bundle\OAuth2Bundle\Manager\Doctrine\AccessTokenManager;
 use Trikoder\Bundle\OAuth2Bundle\Manager\Doctrine\AuthorizationCodeManager;
 use Trikoder\Bundle\OAuth2Bundle\Manager\Doctrine\ClientManager;
 use Trikoder\Bundle\OAuth2Bundle\Manager\Doctrine\RefreshTokenManager;
+use Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AccessTokenManager as BrizyAccessTokenManager;
+use Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AuthorizationCodeManager as BrizyAuthorizationCodeManager;
+use Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ClientManager as BrizyClientManager;
+use Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\RefreshTokenManager as BrizyRefreshTokenManager;
 use Trikoder\Bundle\OAuth2Bundle\Manager\ScopeManagerInterface;
 use Trikoder\Bundle\OAuth2Bundle\Model\Scope as ScopeModel;
 use Trikoder\Bundle\OAuth2Bundle\Security\Authentication\Token\OAuth2TokenFactory;
@@ -297,31 +301,25 @@ final class TrikoderOAuth2Extension extends Extension implements PrependExtensio
         $token = $config['secret_token'];
 
         $container
-            ->getDefinition(AccessTokenManager::class)
+            ->getDefinition(BrizyAccessTokenManager::class)
             ->replaceArgument('$endpoint', $endpoint)
             ->replaceArgument('$token', $token)
         ;
 
         $container
-            ->getDefinition(ClientManager::class)
+            ->getDefinition(BrizyClientManager::class)
             ->replaceArgument('$endpoint', $endpoint)
             ->replaceArgument('$token', $token)
         ;
 
         $container
-            ->getDefinition(RefreshTokenManager::class)
+            ->getDefinition(BrizyRefreshTokenManager::class)
             ->replaceArgument('$endpoint', $endpoint)
             ->replaceArgument('$token', $token)
         ;
 
         $container
-            ->getDefinition(AuthorizationCodeManager::class)
-            ->replaceArgument('$endpoint', $endpoint)
-            ->replaceArgument('$token', $token)
-        ;
-
-        $container
-            ->getDefinition(DoctrineCredentialsRevoker::class)
+            ->getDefinition(BrizyAuthorizationCodeManager::class)
             ->replaceArgument('$endpoint', $endpoint)
             ->replaceArgument('$token', $token)
         ;
