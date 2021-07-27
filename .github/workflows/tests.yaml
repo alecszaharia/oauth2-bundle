@@ -14,13 +14,7 @@ jobs:
             fail-fast: false
             matrix:
                 php: [ '7.2', '7.3', '7.4' ]
-                symfony: [ '4.4', '5.0', '5.1' ]
-                composer-flags: [ '', '--prefer-lowest' ]
-                psr-http-provider: [ 'nyholm', 'zendframework' ]
-                exclude:
-                    -   psr-http-provider: 'zendframework'
-                        composer-flags: '--prefer-lowest'
-
+                symfony: [  '5.1' ]
         env:
             SYMFONY_REQUIRE: ${{ matrix.symfony }}.*
             PSR_HTTP_PROVIDER: ${{ matrix.psr-http-provider }}
