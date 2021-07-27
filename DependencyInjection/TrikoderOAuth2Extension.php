@@ -247,6 +247,10 @@ final class TrikoderOAuth2Extension extends Extension implements PrependExtensio
                 $loader->load('storage/doctrine.xml');
                 $this->configureDoctrinePersistence($container, $persistenceConfiguration);
                 break;
+            case 'brizy':
+                $loader->load('storage/brizy.xml');
+                $this->configureBrizyPersistence($container, $persistenceConfiguration);
+                break;
         }
     }
 
@@ -285,6 +289,45 @@ final class TrikoderOAuth2Extension extends Extension implements PrependExtensio
 
         $container->setParameter('trikoder.oauth2.persistence.doctrine.enabled', true);
         $container->setParameter('trikoder.oauth2.persistence.doctrine.manager', $entityManagerName);
+    }
+
+    private function configureBrizyPersistence(ContainerBuilder $container, array $config): void
+    {
+        $endpoint = $config['endpoint'];
+        $token = $config['secret_token'];
+
+        $container
+            ->getDefinition(AccessTokenManager::class)
+            ->replaceArgument('$endpoint', $endpoint)
+            ->replaceArgument('$token', $token)
+        ;
+
+        $container
+            ->getDefinition(ClientManager::class)
+            ->replaceArgument('$endpoint', $endpoint)
+            ->replaceArgument('$token', $token)
+        ;
+
+        $container
+            ->getDefinition(RefreshTokenManager::class)
+            ->replaceArgument('$endpoint', $endpoint)
+            ->replaceArgument('$token', $token)
+        ;
+
+        $container
+            ->getDefinition(AuthorizationCodeManager::class)
+            ->replaceArgument('$endpoint', $endpoint)
+            ->replaceArgument('$token', $token)
+        ;
+
+        $container
+            ->getDefinition(DoctrineCredentialsRevoker::class)
+            ->replaceArgument('$endpoint', $endpoint)
+            ->replaceArgument('$token', $token)
+        ;
+
+        $container->setParameter('trikoder.oauth2.persistence.brizy.endpoint', $endpoint);
+        $container->setParameter('trikoder.oauth2.persistence.brizy.secret_token', $token);
     }
 
     private function configureInMemoryPersistence(ContainerBuilder $container): void
