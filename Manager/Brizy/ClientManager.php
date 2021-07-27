@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Trikoder\Bundle\OAuth2Bundle\Manager\InMemory;
+namespace Trikoder\Bundle\OAuth2Bundle\Manager\Brizy;
 
 use Trikoder\Bundle\OAuth2Bundle\Manager\ClientFilter;
 use Trikoder\Bundle\OAuth2Bundle\Manager\ClientManagerInterface;
@@ -28,7 +28,7 @@ final class ClientManager implements ClientManagerInterface
      */
     public function save(Client $client): void
     {
-        $this->clients[$client->getIdentifier()] = $client;
+        throw new \Exception('Brizy does not implement  ClientManagerInterface::save');
     }
 
     /**
@@ -36,7 +36,7 @@ final class ClientManager implements ClientManagerInterface
      */
     public function remove(Client $client): void
     {
-        unset($this->clients[$client->getIdentifier()]);
+        throw new \Exception('Brizy does not implement  ClientManagerInterface::remove');
     }
 
     /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Trikoder\Bundle\OAuth2Bundle\Manager\InMemory;
+namespace Trikoder\Bundle\OAuth2Bundle\Manager\Brizy;
 
 use DateTimeImmutable;
 use Trikoder\Bundle\OAuth2Bundle\Manager\RefreshTokenManagerInterface;
@@ -28,29 +28,16 @@ final class RefreshTokenManager implements RefreshTokenManagerInterface
      */
     public function save(RefreshToken $refreshToken): void
     {
-        $this->refreshTokens[$refreshToken->getIdentifier()] = $refreshToken;
+        throw new \Exception('Brizy does not implement  RefreshTokenManagerInterface::save');
     }
 
     public function clearExpired(): int
     {
-        $count = \count($this->refreshTokens);
-
-        $now = new DateTimeImmutable();
-        $this->refreshTokens = array_filter($this->refreshTokens, static function (RefreshToken $refreshToken) use ($now): bool {
-            return $refreshToken->getExpiry() >= $now;
-        });
-
-        return $count - \count($this->refreshTokens);
+        return 0;
     }
 
     public function clearRevoked(): int
     {
-        $count = \count($this->refreshTokens);
-
-        $this->refreshTokens = array_filter($this->refreshTokens, static function (RefreshToken $refreshToken): bool {
-            return !$refreshToken->isRevoked();
-        });
-
-        return $count - \count($this->refreshTokens);
+        return 0;
     }
 }

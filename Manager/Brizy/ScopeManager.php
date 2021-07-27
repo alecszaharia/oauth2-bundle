@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Trikoder\Bundle\OAuth2Bundle\Manager\InMemory;
+namespace Trikoder\Bundle\OAuth2Bundle\Manager\Brizy;
 
 use Trikoder\Bundle\OAuth2Bundle\Manager\ScopeManagerInterface;
 use Trikoder\Bundle\OAuth2Bundle\Model\Scope;
@@ -27,6 +27,6 @@ final class ScopeManager implements ScopeManagerInterface
      */
     public function save(Scope $scope): void
     {
-        $this->scopes[(string) $scope] = $scope;
+        throw new \Exception('Brizy does not implement  ScopeManagerInterface::save');
     }
 }

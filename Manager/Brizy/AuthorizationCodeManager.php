@@ -22,29 +22,16 @@ final class AuthorizationCodeManager implements AuthorizationCodeManagerInterfac
 
     public function save(AuthorizationCode $authorizationCode): void
     {
-        $this->authorizationCodes[$authorizationCode->getIdentifier()] = $authorizationCode;
+        throw new \Exception('Brizy does not implement  AuthorizationCodeManagerInterface::save');
     }
 
     public function clearExpired(): int
     {
-        $count = \count($this->authorizationCodes);
-
-        $now = new DateTimeImmutable();
-        $this->authorizationCodes = array_filter($this->authorizationCodes, static function (AuthorizationCode $authorizationCode) use ($now): bool {
-            return $authorizationCode->getExpiryDateTime() >= $now;
-        });
-
-        return $count - \count($this->authorizationCodes);
+        return 0;
     }
 
     public function clearRevoked(): int
     {
-        $count = \count($this->authorizationCodes);
-
-        $this->authorizationCodes = array_filter($this->authorizationCodes, static function (AuthorizationCode $authorizationCode): bool {
-            return !$authorizationCode->isRevoked();
-        });
-
-        return $count - \count($this->authorizationCodes);
+        return 0;
     }
 }
