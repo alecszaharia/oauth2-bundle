@@ -9,6 +9,15 @@ use Trikoder\Bundle\OAuth2Bundle\Model\Scope;
 
 final class ScopeManager implements ScopeManagerInterface
 {
+    private $endpoint;
+    private $token;
+
+    public function __construct($endpoint,$token)
+    {
+        $this->endpoint = $endpoint;
+        $this->token = $token;
+    }
+
     /**
      * @var Scope[]
      */

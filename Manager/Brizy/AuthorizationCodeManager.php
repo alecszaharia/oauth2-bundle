@@ -10,6 +10,15 @@ use Trikoder\Bundle\OAuth2Bundle\Model\AuthorizationCode;
 
 final class AuthorizationCodeManager implements AuthorizationCodeManagerInterface
 {
+    private $endpoint;
+    private $token;
+
+    public function __construct($endpoint,$token)
+    {
+        $this->endpoint = $endpoint;
+        $this->token = $token;
+    }
+
     /**
      * @var AuthorizationCode[]
      */

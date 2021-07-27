@@ -10,6 +10,15 @@ use Trikoder\Bundle\OAuth2Bundle\Model\Client;
 
 final class ClientManager implements ClientManagerInterface
 {
+    private $endpoint;
+    private $token;
+
+    public function __construct($endpoint,$token)
+    {
+        $this->endpoint = $endpoint;
+        $this->token = $token;
+    }
+
     /**
      * @var Client[]
      */
