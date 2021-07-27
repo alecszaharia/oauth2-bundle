@@ -296,6 +296,7 @@ final class Configuration implements ConfigurationInterface
                 ->end()
                 // In-memory persistence
                 ->scalarNode('in_memory')
+                ->end()
                 // brizy service
                 ->arrayNode('brizy')
                     ->children()
