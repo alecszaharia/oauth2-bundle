@@ -161,6 +161,9 @@ This package is currently in the active development.
                 # Name of the entity manager that you wish to use for managing clients and tokens.
                 entity_manager:       default
             in_memory:            ~
+            brizy:
+                endpoint: ~
+                secret_token: ~
 
         # The priority of the event listener that converts an Exception to a Response.
         exception_event_listener_priority: 10

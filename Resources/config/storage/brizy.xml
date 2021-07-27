@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Aliases -->
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\ClientManagerInterface"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ClientManager"/>
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\AccessTokenManagerInterface"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AccessTokenManager"/>
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\RefreshTokenManagerInterface"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\RefreshTokenManager"/>
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\ScopeManagerInterface"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ScopeManager"/>
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\AuthorizationCodeManagerInterface"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AuthorizationCodeManager"/>
+
+        <!-- Services -->
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ClientManager">
+            <argument key="$endpoint"/>
+            <argument key="$token"/>
+        </service>
+        <service id="trikoder.oauth2.manager.in_memory.client_manager"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ClientManager">
+            <deprecated>The "%alias_id%" service alias is deprecated and will be removed in v4.</deprecated>
+        </service>
+
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AccessTokenManager">
+            <argument key="$endpoint"/>
+            <argument key="$token"/>
+        </service>
+        <service id="trikoder.oauth2.manager.in_memory.access_token_manager"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AccessTokenManager">
+            <deprecated>The "%alias_id%" service alias is deprecated and will be removed in v4.</deprecated>
+        </service>
+
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\RefreshTokenManager">
+            <argument key="$endpoint"/>
+            <argument key="$token"/>
+        </service>
+        <service id="trikoder.oauth2.manager.in_memory.refresh_token_manager"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\RefreshTokenManager">
+            <deprecated>The "%alias_id%" service alias is deprecated and will be removed in v4.</deprecated>
+        </service>
+
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ScopeManager">
+            <argument key="$endpoint"/>
+            <argument key="$token"/>
+        </service>
+        <service id="trikoder.oauth2.manager.in_memory.scope_manager"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\ScopeManager">
+            <deprecated>The "%alias_id%" service alias is deprecated and will be removed in v4.</deprecated>
+        </service>
+
+        <service id="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AuthorizationCodeManager">
+            <argument key="$endpoint"/>
+            <argument key="$token"/>
+        </service>
+        <service id="trikoder.oauth2.manager.in_memory.authorization_code_manager"
+                 alias="Trikoder\Bundle\OAuth2Bundle\Manager\Brizy\AuthorizationCodeManager">
+            <deprecated>The "%alias_id%" service alias is deprecated and will be removed in v4.</deprecated>
+        </service>
+
+    </services>
+</container>

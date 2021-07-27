@@ -296,6 +296,17 @@ final class Configuration implements ConfigurationInterface
                 ->end()
                 // In-memory persistence
                 ->scalarNode('in_memory')
+                // brizy service
+                ->arrayNode('brizy')
+                    ->children()
+                        ->scalarNode('endpoint')
+                            ->info('The identity provider url')
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('secret_token')
+                            ->info('The secret token')
+                            ->cannotBeEmpty()
+                        ->end()
                 ->end()
             ->end()
         ;
